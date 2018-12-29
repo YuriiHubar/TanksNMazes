@@ -1,0 +1,59 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!78 &1
+TagManager:
+  serializedVersion: 2
+  tags:
+  - Projectile
+  - Wall
+  - Tank
+  - MovenmentTarget
+  - Obstacle
+  - Turret
+  - StatsMenu
+  layers:
+  - Default
+  - TransparentFX
+  - Ignore Raycast
+  - 
+  - Water
+  - UI
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  m_SortingLayers:
+  - name: Ground
+    uniqueID: 3155518711
+    locked: 0
+  - name: OnGround
+    uniqueID: 3595387657
+    locked: 0
+  - name: InAir
+    uniqueID: 154780051
+    locked: 0
+  - name: Default
+    uniqueID: 0
+    locked: 0
