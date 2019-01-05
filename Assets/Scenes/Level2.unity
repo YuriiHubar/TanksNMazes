@@ -6050,7 +6050,7 @@ GameObject:
   - component: {fileID: 1774778414}
   - component: {fileID: 1774778413}
   - component: {fileID: 1774778412}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Collideable
   m_TagString: Obstacle
   m_Icon: {fileID: 0}
@@ -7572,6 +7572,10 @@ Prefab:
     - target: {fileID: 1715212826211932, guid: bc4bb8b0464e92e459cadd2614f27f21, type: 2}
       propertyPath: m_Name
       value: BotTank0 (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1715212826211932, guid: bc4bb8b0464e92e459cadd2614f27f21, type: 2}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bc4bb8b0464e92e459cadd2614f27f21, type: 2}

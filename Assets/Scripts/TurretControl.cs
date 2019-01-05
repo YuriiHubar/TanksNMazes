@@ -3,9 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class TurretControl : MonoBehaviour {
-    public AudioClip DestroySound;
-    public float DestroySoundVolume = 0.33f;
-
+    public GameObject destroySoundObject;
     public GameObject destroyedPrefab;
 
     private AudioSource audioSource;
@@ -16,29 +14,23 @@ public class TurretControl : MonoBehaviour {
 
     private CannonControl cannon;
     private GameController gameController;
-    private bool controlsOff = true;
 
     void Start()
     {
         cannon = transform.GetComponentInChildren<CannonControl>();
         audioSource = GetComponent<AudioSource>();
         gameController = GameController.instance;
-        controlsOff = false;
     }
 
 
     // Access methods for tank controlling
     public void TurnCannonTo(ref float angle)
     {
-        if (controlsOff)    // Case for example when tank was blown up and before it's destroyed, cannon still works
-            return;
         cannon.TurnTo(ref angle);
     }
    
     public bool TryFire()
     {
-        if (controlsOff)    // Case for example when turret was blown up and before it's destroyed, cannon still works
-            return false;
         if (!HasShot)       // Won't shoot if has "no ammo"
             return false;
 
@@ -67,16 +59,9 @@ public class TurretControl : MonoBehaviour {
 
     private void BlowUp()
     {
-        controlsOff = true;
-        GetComponent<Collider2D>().enabled = false;
-        Renderer[] renderers = GetComponentsInChildren<Renderer>();
-        foreach (Renderer r in renderers)
-            r.enabled = false;
-
-        audioSource.PlayOneShot(DestroySound, DestroySoundVolume);
-
-        Destroy(gameObject, DestroySound.length);
+        Instantiate(destroySoundObject, transform.position, transform.rotation);
         Instantiate(destroyedPrefab, transform.position, transform.rotation);
+        Destroy(gameObject);
     }
 
     // public utility methos

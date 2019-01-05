@@ -525,7 +525,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4149879517602550, guid: 3e698519939808e46878c50e518f2c29, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4149879517602550, guid: 3e698519939808e46878c50e518f2c29, type: 2}
       propertyPath: m_LocalPosition.z
@@ -550,21 +550,6 @@ Prefab:
     - target: {fileID: 4149879517602550, guid: 3e698519939808e46878c50e518f2c29, type: 2}
       propertyPath: m_RootOrder
       value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 212363817259511914, guid: 3e698519939808e46878c50e518f2c29,
-        type: 2}
-      propertyPath: m_Color.r
-      value: 0.83921576
-      objectReference: {fileID: 0}
-    - target: {fileID: 212363817259511914, guid: 3e698519939808e46878c50e518f2c29,
-        type: 2}
-      propertyPath: m_Color.g
-      value: 0.20392159
-      objectReference: {fileID: 0}
-    - target: {fileID: 212363817259511914, guid: 3e698519939808e46878c50e518f2c29,
-        type: 2}
-      propertyPath: m_Color.b
-      value: 0.20392159
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3e698519939808e46878c50e518f2c29, type: 2}
@@ -5505,7 +5490,7 @@ GameObject:
   - component: {fileID: 1774778414}
   - component: {fileID: 1774778413}
   - component: {fileID: 1774778412}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Collideable
   m_TagString: Obstacle
   m_Icon: {fileID: 0}
@@ -6803,6 +6788,10 @@ Prefab:
     - target: {fileID: 4496602766819080, guid: 57dcce444c8dbac4690580fd530b5336, type: 2}
       propertyPath: m_RootOrder
       value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 1145269115503254, guid: 57dcce444c8dbac4690580fd530b5336, type: 2}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 57dcce444c8dbac4690580fd530b5336, type: 2}

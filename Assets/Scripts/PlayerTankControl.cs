@@ -30,7 +30,7 @@ public class PlayerTankControl : MonoBehaviour
             tankControl.TryMoveAndTurnTo(ref mousePosition);
         }
 
-        if (Input.GetMouseButtonDown(1))
+        if (Input.GetMouseButtonDown(1) && Input.GetKey(KeyCode.LeftControl))
             tankControl.BlowUp();
     }
 }

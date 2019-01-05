@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4989579472085058}
   - component: {fileID: 8195094280069894160}
   - component: {fileID: 3664157345666117304}
-  m_Layer: 31
+  m_Layer: 8
   m_Name: Layer1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -37,7 +37,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4543021299597134}
   - component: {fileID: 2569400266948477196}
-  m_Layer: 31
+  m_Layer: 8
   m_Name: Collideable
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -116,7 +116,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &4083156818381680
 Transform:
   m_ObjectHideFlags: 1
@@ -252,7 +252,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.022901177}
+  m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -263,7 +263,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.56, y: 0.65167874}
+  m_Size: {x: 0.56, y: 0.65}
   m_EdgeRadius: 0.1
 --- !u!61 &61405773951792350
 BoxCollider2D:
@@ -560,8 +560,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MoveSound: {fileID: 8300000, guid: cb0c7dd523e7da242842af66e9bc47b3, type: 3}
   MoveSoundVolume: 0.15
-  DestroySound: {fileID: 8300000, guid: f7c25d6b8d1216f44b26a7ec9181db28, type: 3}
-  DestroySoundVolume: 0.5
+  destroySoundObject: {fileID: 1559764151373272, guid: 9f192bccefba05344af76befc3b455db,
+    type: 2}
   movenmentSpeed: 3
   maxMovenmentDuration: 5
   movenmentTargetPrefab: {fileID: 1978519018282530, guid: 42646578a9b574c4fadf12966ee59f42,

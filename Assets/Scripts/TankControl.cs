@@ -10,8 +10,8 @@ public class TankControl : MonoBehaviour
 {
     public AudioClip MoveSound;
     public float MoveSoundVolume = 0.15f;
-    public AudioClip DestroySound;
-    public float DestroySoundVolume = 0.33f;
+
+    public GameObject destroySoundObject;
 
     public float movenmentSpeed = 3f;
     public float maxMovenmentDuration = 5f;
@@ -31,9 +31,9 @@ public class TankControl : MonoBehaviour
 
 
     private bool isMoving = false;
+    private bool stopAfterCollision = true; 
     private bool hasShot = true;
     private float endMovenment;
-    private bool controlsOff = true;
 
     private CannonControl cannon;
     private Rigidbody2D rb2d;
@@ -52,9 +52,7 @@ public class TankControl : MonoBehaviour
         movenmentTargetTrigger = movenmentTarget.GetComponent<Collider2D>();
         audioSource = GetComponent<AudioSource>();
         gameController = GameController.instance;
-        controlsOff = false;
     }
-
 
     // Access methods for tank controlling
 
@@ -64,8 +62,6 @@ public class TankControl : MonoBehaviour
     /// <param name="newOrientation"></param>
     public void TurnCannonTo(ref float angle)
     {
-        if (controlsOff)
-            return;
         cannon.TurnTo(ref angle);
     }
 
@@ -74,9 +70,6 @@ public class TankControl : MonoBehaviour
     /// </summary>
     public bool TryFire()
     {
-        if (controlsOff)    // Case for example when tank was blown up and before it's destroyed, cannon still works
-            return false;
-
         if (!isMoving)      // Won't shoot if not moving
             return false;
         if (!HasShot)       // Won't shoot if has "no ammo"
@@ -96,17 +89,15 @@ public class TankControl : MonoBehaviour
     /// <param name="target"></param>
     public void TryMoveAndTurnTo(ref Vector2 target)
     {
-        if (controlsOff)    // Case for example when tank was blown up and before it's destroyed, cannon still works
-            return;
-
         if (isMoving)
             return;             // No new movenment if tank still moving
 
         Vector2 relativeTarget = target - (Vector2)transform.position;
         float newOrientation = GetOrientation(ref relativeTarget);
-
         SetMovenmentTarget(ref target);
+
         TurnTo(ref newOrientation);
+
         MoveTo(ref relativeTarget);
         hasShot = true;
     }
@@ -114,16 +105,9 @@ public class TankControl : MonoBehaviour
 
     public void BlowUp()
     {
-        controlsOff = true;
-        bodyCollider.enabled = false;
-
-        Renderer[] renderers = GetComponentsInChildren<Renderer>();
-        foreach (Renderer r in renderers)
-            r.enabled = false;
-
-        audioSource.PlayOneShot(DestroySound, DestroySoundVolume);
-        Destroy(gameObject, DestroySound.length);
+        Instantiate(destroySoundObject, transform.position, transform.rotation);
         Instantiate(destroyedPrefab, transform.position, transform.rotation);
+        Destroy(gameObject);
     }
 
 
@@ -144,6 +128,13 @@ public class TankControl : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D col)
     {
+        if (col.collider.CompareTag("Obstacle"))
+        {
+            if (transform.InverseTransformPoint(col.contacts[0].point).y < 0)
+                stopAfterCollision = false;
+            return;
+        }
+
         if (col.collider.CompareTag("Projectile"))
         {
             if (gameController != null)
@@ -152,16 +143,20 @@ public class TankControl : MonoBehaviour
                     gameController.Murder(gameObject);    // Add points only if it's Player work                                               
                 else
                     gameController.Death(gameObject);
+
                 BlowUp(); // Make it blow up!
             }
         }
     }
 
     void OnCollisionExit2D(Collision2D col)
-    { 
-        FinishMovenment();
+    {
+        if (stopAfterCollision)        
+            FinishMovenment();
+        else
+            stopAfterCollision = true;
+        
     }
-
 
 
     /// <summary>
@@ -173,6 +168,7 @@ public class TankControl : MonoBehaviour
         rb2d.angularVelocity = 0;
         isMoving = false;
         movenmentTarget.SetActive(false);
+        //controlsOff = false;
     }
 
     /// <summary>
@@ -209,10 +205,13 @@ public class TankControl : MonoBehaviour
 
         float timeLeft = endMovenment - Time.time;  // Can be invoked before it was needed, let's check.
 
-        if (timeLeft < 0)                   // If function was invoked before time needed, then
+        if (timeLeft < 0)     // If function was invoked before time needed or we're in the middle of collision
+        {
             FinishMovenment();
-        else
-            Invoke("FinishMovenmentByTimer", timeLeft + 0.1f);  // Call it a bit late as schedulled
+            return;
+        }
+        
+        Invoke("FinishMovenmentByTimer", timeLeft + 0.1f);  // Call it a bit late as schedulled
     }
 
     /// <summary>

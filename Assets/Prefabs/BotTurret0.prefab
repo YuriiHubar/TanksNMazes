@@ -513,8 +513,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd4834a8786326142a99cacf78136108, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DestroySound: {fileID: 8300000, guid: f7c25d6b8d1216f44b26a7ec9181db28, type: 3}
-  DestroySoundVolume: 0.5
+  destroySoundObject: {fileID: 1559764151373272, guid: 9f192bccefba05344af76befc3b455db,
+    type: 2}
   destroyedPrefab: {fileID: 1767570383996562, guid: 9565c58ccb5f78147bebb5e72f682eb6,
     type: 2}
 --- !u!114 &114968007860407796

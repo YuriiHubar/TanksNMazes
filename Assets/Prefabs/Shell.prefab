@@ -234,9 +234,8 @@ MonoBehaviour:
   masterTag: 
   smokePrefab: {fileID: 1089208218019384, guid: a91a1df2f2a97d245b642016074dfee7,
     type: 2}
-  HitSound: {fileID: 8300000, guid: 250b2967b7d27254091b48f1129e3937, type: 3}
-  minVolume: 0.15
-  maxVolume: 0.33
+  soundObjectHit: {fileID: 1559764151373272, guid: 44cd07d9d43ad594e8e68808bd1cfa72,
+    type: 2}
 --- !u!212 &212362638046637262
 SpriteRenderer:
   m_ObjectHideFlags: 1
